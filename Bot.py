@@ -59,3 +59,24 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
+
+
+import threading
+import http.server
+import socketserver
+
+PORT = 8000
+
+class Handler(http.server.SimpleHTTPRequestHandler):
+    def do_GET(self):
+        self.send_response(200)
+        self.send_header("Content-type", "text/html")
+        self.end_headers()
+        self.wfile.write(b"Bot is running!")
+
+def run_web():
+    with socketserver.TCPServer(("", PORT), Handler) as httpd:
+        print(f"Serving on port {PORT}")
+        httpd.serve_forever()
+
+threading.Thread(target=run_web, daemon=True).start()
