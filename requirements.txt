@@ -1,5 +1,2 @@
 aiogram==3.0.0
-yt-dlp
-python-dotenv==1.0.0
-fastapi==0.103.1
-uvicorn==0.23.2
+yt-dlp==2025.02.04
